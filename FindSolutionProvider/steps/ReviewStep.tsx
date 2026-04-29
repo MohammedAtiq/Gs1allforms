@@ -38,7 +38,7 @@ const CATEGORY_LABELS: Record<string, string> = {
 };
 
 const PAYMENT_MODE_LABELS: Record<FeesValues["paymentMode"], string> = {
-  online: "Online Payment (Card / UPI / Net Banking)",
+  online: "Online Payment (Card / Mada / Net Banking)",
   dd: "Demand Draft (DD / Pay Order)",
   neft: "NEFT (Bank Transfer)",
 };

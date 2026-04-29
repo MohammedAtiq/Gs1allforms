@@ -15,7 +15,7 @@ export function PageFooter() {
             className="h-5 w-auto object-contain opacity-90"
           />
           <span className="whitespace-nowrap">
-            © 2026 GS1 India. All rights reserved.
+            © 2026 GS1 Saudi Arabia. All rights reserved.
           </span>
         </div>
         <div className="flex items-center gap-5">

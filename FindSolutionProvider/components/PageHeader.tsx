@@ -7,7 +7,7 @@ export function PageHeader() {
     <header className="w-full bg-white">
       <div className="sticky top-0 z-40 bg-white shadow-sm">
         <div className="bg-gs1-blue py-2 text-center text-xs font-medium tracking-wide text-white">
-          GS1 India Solution Provider Registration — Official Application Portal
+          GS1 Saudi Arabia Solution Provider Registration — Official Application Portal
         </div>
 
         <div className="border-b border-slate-200 bg-white">

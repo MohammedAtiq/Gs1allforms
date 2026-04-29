@@ -86,10 +86,10 @@ export function Sidebar({
           Contact our support team for assistance.
         </p>
         <a
-          href="mailto:support@gs1india.org"
+          href="mailto:support@gs1saudiarabia.org"
           className="mt-2 inline-block text-xs font-semibold text-gs1-orange hover:underline"
         >
-          support@gs1india.org
+          support@gs1saudiarabia.org
         </a>
       </div>
     </aside>

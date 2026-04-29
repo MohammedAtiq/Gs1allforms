@@ -17,10 +17,10 @@ interface DeclarationStepProps {
 
 const declarationParagraphs = [
   "I/We hereby declare that the information furnished in this application form is true and correct to the best of my/our knowledge and belief.",
-  "I/We understand that registration under the GS1 India Solution Provider Programme only signifies recognition as an Authorised Solution Provider and does not imply formal accreditation by GS1 India.",
-  "I/We agree to abide by all the rules, regulations, and guidelines issued by GS1 India from time to time.",
-  "I/We agree not to misuse or misrepresent our association with GS1 India and shall not use GS1 India's logo without prior written permission.",
-  "I/We understand that GS1 India reserves the right to cancel/withdraw the Solution Provider status at any time without assigning any reason.",
+  "I/We understand that registration under the GS1 Saudi Arabia Solution Provider Programme only signifies recognition as an Authorised Solution Provider and does not imply formal accreditation by GS1 Saudi Arabia.",
+  "I/We agree to abide by all the rules, regulations, and guidelines issued by GS1 Saudi Arabia from time to time.",
+  "I/We agree not to misuse or misrepresent our association with GS1 Saudi Arabia and shall not use GS1 Saudi Arabia's logo without prior written permission.",
+  "I/We understand that GS1 Saudi Arabia reserves the right to cancel/withdraw the Solution Provider status at any time without assigning any reason.",
   "I/We confirm that all documents submitted are genuine and self-attested copies of the originals.",
 ];
 

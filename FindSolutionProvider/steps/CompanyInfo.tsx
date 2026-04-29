@@ -142,7 +142,7 @@ export function CompanyInfo({ defaultValues, onSubmit }: CompanyInfoProps) {
         <TextField
           id="phone"
           label="Phone Number"
-          placeholder="+91 XXXXX XXXXX"
+          placeholder="+966 XXXXX XXXX"
           autoComplete="tel"
           error={errors.phone?.message}
           {...register("phone")}

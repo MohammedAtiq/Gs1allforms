@@ -41,7 +41,7 @@ const PAYMENT_MODES: {
   {
     id: "online",
     title: "Online",
-    subtitle: "Card / UPI / Net Banking",
+    subtitle: "Card / Mada / Net Banking",
     icon: CreditCard,
     recommended: true,
   },
@@ -129,8 +129,12 @@ export function FeesStep({
               {feeRows.map((row) => (
                 <tr key={row.label} className="border-t border-slate-100">
                   <td className="px-3 py-2 text-xs font-medium">{row.label}</td>
-                  <td className="px-3 py-2 text-xs font-semibold">₹{row.annualFee.toLocaleString("en-IN")}</td>
-                  <td className="px-3 py-2 text-xs">₹{row.oneTime.toLocaleString("en-IN")}</td>
+                  <td className="px-3 py-2 text-xs font-semibold">
+                    SAR {row.annualFee.toLocaleString("en-SA")}
+                  </td>
+                  <td className="px-3 py-2 text-xs">
+                    SAR {row.oneTime.toLocaleString("en-SA")}
+                  </td>
                 </tr>
               ))}
             </tbody>
