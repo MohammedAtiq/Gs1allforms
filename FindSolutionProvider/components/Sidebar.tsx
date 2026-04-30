@@ -1,6 +1,7 @@
 "use client";
 
 import { STEPS, type StepId } from "../types";
+import { useTranslation } from "react-i18next";
 
 interface SidebarProps {
   currentStep: StepId;
@@ -13,20 +14,21 @@ export function Sidebar({
   completedPercent,
   completedStepIds,
 }: SidebarProps) {
+  const { t } = useTranslation();
   return (
     <aside className="hidden w-full flex-col gap-6 rounded-xl bg-gs1-blue p-6 text-white shadow-sm md:flex md:w-72 md:shrink-0">
       <div>
         <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/60">
-          Application Form
+          {t("sidebar.appForm")}
         </p>
         <h2 className="mt-1 text-xl font-semibold leading-snug">
-          Solution Provider Registration
+          {t("sidebar.title")}
         </h2>
       </div>
 
       <div>
         <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-white/60">
-          {completedPercent}% complete
+          {t("sidebar.complete", { value: completedPercent })}
         </p>
         <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-white/15">
           <div
@@ -40,6 +42,8 @@ export function Sidebar({
         {STEPS.map((step) => {
           const isActive = step.id === currentStep;
           const isCompleted = completedStepIds.includes(step.id);
+          const title = t(`steps.${step.id}Title`);
+          const subtitle = t(`steps.${step.id}Subtitle`);
           return (
             <li
               key={step.id}
@@ -61,9 +65,9 @@ export function Sidebar({
                 {isCompleted ? "✓" : step.index}
               </span>
               <span className="flex flex-col leading-tight">
-                <span className="text-sm font-semibold">{step.title}</span>
+                <span className="text-sm font-semibold">{title}</span>
                 <span className="text-[11px] text-white/60">
-                  {step.subtitle}
+                  {subtitle}
                 </span>
               </span>
               {isActive ? (
@@ -80,16 +84,16 @@ export function Sidebar({
       <div className="mt-2 rounded-lg bg-white/5 p-4 ring-1 ring-white/10">
         <div className="flex items-center gap-2 text-sm font-semibold">
           <span aria-hidden>?</span>
-          Need Help?
+          {t("sidebar.needHelp")}
         </div>
         <p className="mt-1 text-xs text-white/70">
-          Contact our support team for assistance.
+          {t("sidebar.helpText")}
         </p>
         <a
-          href="mailto:support@gs1saudiarabia.org"
+          href={`mailto:${t("common.supportEmail")}`}
           className="mt-2 inline-block text-xs font-semibold text-gs1-orange hover:underline"
         >
-          support@gs1saudiarabia.org
+          {t("common.supportEmail")}
         </a>
       </div>
     </aside>

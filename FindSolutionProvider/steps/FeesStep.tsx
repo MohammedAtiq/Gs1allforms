@@ -2,6 +2,7 @@
 
 import { ArrowRightLeft, Building2, CreditCard, ReceiptText } from "lucide-react";
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 type PaymentMode = "online" | "dd" | "neft";
 
@@ -65,6 +66,7 @@ export function FeesStep({
   onBack,
   onSubmit,
 }: FeesStepProps) {
+  const { t } = useTranslation();
   const [paymentMode, setPaymentMode] = useState<PaymentMode>(
     defaultValues?.paymentMode ?? "online",
   );
@@ -103,12 +105,14 @@ export function FeesStep({
             <ArrowRightLeft size={16} strokeWidth={2.2} />
           </span>
           <div>
-            <h2 className="text-base font-semibold text-gs1-blue">Fee & Payment</h2>
-            <p className="text-xs text-slate-500">Fees & payment method</p>
+            <h2 className="text-base font-semibold text-gs1-blue">
+              {t("steps.feesTitle")}
+            </h2>
+            <p className="text-xs text-slate-500">{t("steps.feesSubtitle")}</p>
           </div>
         </div>
         <span className="shrink-0 whitespace-nowrap rounded-full bg-slate-100 px-2 py-1 text-[10px] font-medium text-slate-600 ring-1 ring-slate-200 sm:px-3 sm:text-[11px]">
-          Step 4 of 6
+          {t("common.stepOf", { current: 4, total: 6 })}
         </span>
       </header>
 
@@ -220,14 +224,14 @@ export function FeesStep({
             onClick={onBack}
             className="inline-flex h-10 min-w-[78px] items-center justify-center gap-2 rounded-md border border-slate-200 bg-white px-3 text-xs font-semibold text-slate-700 transition hover:border-slate-300 sm:min-w-[94px] sm:px-4 sm:text-sm"
           >
-            ← Back
+            {`← ${t("common.back")}`}
           </button>
           <button
             type="button"
             onClick={handleContinue}
             className="inline-flex h-10 min-w-[96px] items-center justify-center gap-2 rounded-md bg-gs1-blue px-3 text-xs font-semibold text-white shadow-sm transition hover:bg-gs1-blue-dark sm:min-w-[110px] sm:px-5 sm:text-sm"
           >
-            Continue
+            {t("common.continue")}
             <span aria-hidden>→</span>
           </button>
         </div>

@@ -7,6 +7,7 @@ import { PageHeader } from "./components/PageHeader";
 import { MobileStepCard } from "./components/MobileStepCard";
 import { Sidebar } from "./components/Sidebar";
 import { SubmissionSuccess } from "./components/SubmissionSuccess";
+import { LanguageProvider } from "./providers/LanguageProvider";
 import { CompanyInfo } from "./steps/CompanyInfo";
 import { CategoryStep } from "./steps/CategoryStep";
 import { DeclarationStep, type DeclarationValues } from "./steps/DeclarationStep";
@@ -25,6 +26,14 @@ interface FormData {
 }
 
 export default function FindSolutionProvider() {
+  return (
+    <LanguageProvider>
+      <FindSolutionProviderContent />
+    </LanguageProvider>
+  );
+}
+
+function FindSolutionProviderContent() {
   const [currentStep, setCurrentStep] = useState<StepId>("company");
   const [data, setData] = useState<FormData>({});
   const [isSubmitted, setIsSubmitted] = useState(false);

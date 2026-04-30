@@ -2,6 +2,7 @@
 
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslation } from "react-i18next";
 
 import {
   TextAreaField,
@@ -52,6 +53,7 @@ interface CompanyInfoProps {
 }
 
 export function CompanyInfo({ defaultValues, onSubmit }: CompanyInfoProps) {
+  const { t } = useTranslation();
   const {
     control,
     register,
@@ -91,13 +93,13 @@ export function CompanyInfo({ defaultValues, onSubmit }: CompanyInfoProps) {
           </span>
           <div>
             <h2 className="text-base font-semibold text-gs1-blue">
-              Company Info
+              {t("steps.companyTitle")}
             </h2>
-            <p className="text-xs text-slate-500">Basic company details</p>
+            <p className="text-xs text-slate-500">{t("steps.companySubtitle")}</p>
           </div>
         </div>
         <span className="shrink-0 whitespace-nowrap rounded-full bg-slate-100 px-2 py-1 text-[10px] font-medium text-slate-600 ring-1 ring-slate-200 sm:px-3 sm:text-[11px]">
-          Step 1 of 6
+          {t("common.stepOf", { current: 1, total: 6 })}
         </span>
       </header>
 
@@ -214,7 +216,7 @@ export function CompanyInfo({ defaultValues, onSubmit }: CompanyInfoProps) {
           disabled={isSubmitting}
           className="inline-flex h-10 min-w-[96px] items-center justify-center gap-2 rounded-md bg-gs1-blue px-3 text-xs font-semibold text-white shadow-sm transition hover:bg-gs1-blue-dark disabled:opacity-60 sm:px-5 sm:text-sm"
         >
-          Continue
+            {t("common.continue")}
           <span aria-hidden>→</span>
         </button>
       </div>

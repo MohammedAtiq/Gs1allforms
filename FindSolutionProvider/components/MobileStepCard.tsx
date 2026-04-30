@@ -1,6 +1,7 @@
 "use client";
 
 import { STEPS, type StepId } from "../types";
+import { useTranslation } from "react-i18next";
 
 interface MobileStepCardProps {
   currentStep: StepId;
@@ -8,6 +9,9 @@ interface MobileStepCardProps {
 
 export function MobileStepCard({ currentStep }: MobileStepCardProps) {
   const current = STEPS.find((step) => step.id === currentStep) ?? STEPS[0];
+  const { t } = useTranslation();
+  const title = t(`steps.${current.id}Title`);
+  const subtitle = t(`steps.${current.id}Subtitle`);
 
   return (
     <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm md:hidden">
@@ -17,14 +21,12 @@ export function MobileStepCard({ currentStep }: MobileStepCardProps) {
             {current.index}
           </span>
           <div className="leading-tight">
-            <p className="text-lg font-semibold text-gs1-blue sm:text-xl">
-              {current.title}
-            </p>
-            <p className="text-xs text-slate-400 sm:text-sm">{current.subtitle}</p>
+            <p className="text-lg font-semibold text-gs1-blue sm:text-xl">{title}</p>
+            <p className="text-xs text-slate-400 sm:text-sm">{subtitle}</p>
           </div>
         </div>
         <span className="whitespace-nowrap pt-1 text-[11px] font-semibold tracking-[0.08em] text-slate-400 sm:text-sm">
-          STEP {current.index} OF {STEPS.length}
+          {t("common.stepOf", { current: current.index, total: STEPS.length })}
         </span>
       </div>
 
