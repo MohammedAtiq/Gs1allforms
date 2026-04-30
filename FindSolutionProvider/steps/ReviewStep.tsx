@@ -172,7 +172,11 @@ export function ReviewStep({
             onClick={onSubmitApplication}
             className="inline-flex h-10 min-w-[124px] items-center justify-center gap-2 rounded-md bg-gs1-orange px-3 text-xs font-semibold text-white shadow-sm transition hover:brightness-95 sm:min-w-[148px] sm:px-5 sm:text-sm"
           >
-            <SendHorizontal size={14} strokeWidth={2.2} />
+            <SendHorizontal
+              size={14}
+              strokeWidth={2.2}
+              className={isRTL ? "rotate-180" : ""}
+            />
             Submit Application
           </button>
         </div>
