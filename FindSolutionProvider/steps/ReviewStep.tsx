@@ -96,9 +96,12 @@ export function ReviewStep({
         icon={FileCheck2}
         title="Legal Documents"
         rows={[
-          ["PAN Card", documents?.panNumber || "—"],
-          ["GST / VAT", documents?.gstTin || "—"],
-          ["ROC No.", documents?.rocNumber || "—"],
+          [
+            "National ID / Iqama",
+            documents?.nationalIdIqamaNumber || "—",
+          ],
+          ["VAT Registration", documents?.vatRegistrationNumber || "—"],
+          ["CR Number", documents?.commercialRegistrationNumber || "—"],
         ]}
       />
 

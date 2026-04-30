@@ -4,9 +4,9 @@ import { Building2, FileText, Landmark, ShieldCheck } from "lucide-react";
 import { useState } from "react";
 
 export interface DocumentsValues {
-  panNumber: string;
-  gstTin: string;
-  rocNumber: string;
+  nationalIdIqamaNumber: string;
+  vatRegistrationNumber: string;
+  commercialRegistrationNumber: string;
 }
 
 interface DocumentsStepProps {
@@ -16,9 +16,9 @@ interface DocumentsStepProps {
 }
 
 const defaults: DocumentsValues = {
-  panNumber: "",
-  gstTin: "",
-  rocNumber: "",
+  nationalIdIqamaNumber: "",
+  vatRegistrationNumber: "",
+  commercialRegistrationNumber: "",
 };
 
 export function DocumentsStep({
@@ -30,24 +30,53 @@ export function DocumentsStep({
     ...defaults,
     ...defaultValues,
   });
-  const [error, setError] = useState<string>("");
+  const [errors, setErrors] = useState<{
+    nationalIdIqamaNumber?: string;
+    vatRegistrationNumber?: string;
+    commercialRegistrationNumber?: string;
+  }>({});
 
   function setField<K extends keyof DocumentsValues>(key: K, value: string) {
     setValues((prev) => ({ ...prev, [key]: value }));
-    if (key === "panNumber" && value.trim()) {
-      setError("");
-    }
+    setErrors((prev) => ({ ...prev, [key]: undefined }));
   }
 
   function handleContinue() {
-    if (!values.panNumber.trim()) {
-      setError("PAN card number is required.");
-      return;
+    const nextErrors: {
+      nationalIdIqamaNumber?: string;
+      vatRegistrationNumber?: string;
+      commercialRegistrationNumber?: string;
+    } = {};
+
+    const nationalId = values.nationalIdIqamaNumber.trim();
+    const vat = values.vatRegistrationNumber.trim();
+    const cr = values.commercialRegistrationNumber.trim();
+
+    if (!nationalId) {
+      nextErrors.nationalIdIqamaNumber = "National ID / Iqama number is required.";
+    } else if (!/^\d+$/.test(nationalId)) {
+      nextErrors.nationalIdIqamaNumber = "National ID / Iqama number must be numeric.";
+    } else if (nationalId.length !== 10) {
+      nextErrors.nationalIdIqamaNumber = "National ID / Iqama number must be 10 digits.";
     }
+
+    if (vat && !/^\d{15}$/.test(vat)) {
+      nextErrors.vatRegistrationNumber =
+        "VAT registration number must be 15 digits.";
+    }
+
+    if (cr && !/^\d+$/.test(cr)) {
+      nextErrors.commercialRegistrationNumber =
+        "Commercial Registration number must be numeric.";
+    }
+
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length > 0) return;
+
     onSubmit({
-      panNumber: values.panNumber.trim().toUpperCase(),
-      gstTin: values.gstTin.trim(),
-      rocNumber: values.rocNumber.trim(),
+      nationalIdIqamaNumber: nationalId,
+      vatRegistrationNumber: vat,
+      commercialRegistrationNumber: cr,
     });
   }
 
@@ -69,34 +98,36 @@ export function DocumentsStep({
       </header>
 
       <DocumentCard
-        label="PAN Card Number"
+        label="National ID / Iqama Number"
         required
-        hint="Applicant's or proprietor's PAN card (e.g. ABCDE1234F)"
-        placeholder="e.g. ABCDE1234F"
-        value={values.panNumber}
-        onChange={(v) => setField("panNumber", v)}
+        hint="Enter your Iqama (for residents) or Saudi National ID"
+        placeholder="e.g. 1023456789"
+        value={values.nationalIdIqamaNumber}
+        onChange={(v) => setField("nationalIdIqamaNumber", v)}
         icon={ShieldCheck}
-        error={error}
+        error={errors.nationalIdIqamaNumber}
       />
 
       <DocumentCard
-        label="GST / VAT / TIN No."
-        hint="Company GST registration certificate number"
+        label="VAT Registration Number"
+        hint="Company VAT number issued by Zakat, Tax and Customs Authority"
         optional
-        placeholder="Enter GST registration number"
-        value={values.gstTin}
-        onChange={(v) => setField("gstTin", v)}
+        placeholder="e.g. 300123456700003"
+        value={values.vatRegistrationNumber}
+        onChange={(v) => setField("vatRegistrationNumber", v)}
         icon={Landmark}
+        error={errors.vatRegistrationNumber}
       />
 
       <DocumentCard
-        label="ROC / LLP / Company Registration No."
-        hint="Required for LLP / Pvt. Ltd. / Ltd. companies"
+        label="Commercial Registration (CR) Number"
+        hint="Official business registration number in Saudi Arabia"
         optional
-        placeholder="Enter ROC or company registration number"
-        value={values.rocNumber}
-        onChange={(v) => setField("rocNumber", v)}
+        placeholder="e.g. 1010123456"
+        value={values.commercialRegistrationNumber}
+        onChange={(v) => setField("commercialRegistrationNumber", v)}
         icon={Building2}
+        error={errors.commercialRegistrationNumber}
       />
 
       <div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
