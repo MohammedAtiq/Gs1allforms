@@ -3,6 +3,7 @@
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslation } from "react-i18next";
+import { useLanguage } from "../providers/LanguageProvider";
 
 import {
   TextAreaField,
@@ -54,6 +55,7 @@ interface CompanyInfoProps {
 
 export function CompanyInfo({ defaultValues, onSubmit }: CompanyInfoProps) {
   const { t } = useTranslation();
+  const { isRTL } = useLanguage();
   const {
     control,
     register,
@@ -217,7 +219,7 @@ export function CompanyInfo({ defaultValues, onSubmit }: CompanyInfoProps) {
           className="inline-flex h-10 min-w-[96px] items-center justify-center gap-2 rounded-md bg-gs1-blue px-3 text-xs font-semibold text-white shadow-sm transition hover:bg-gs1-blue-dark disabled:opacity-60 sm:px-5 sm:text-sm"
         >
             {t("common.continue")}
-          <span aria-hidden>→</span>
+            <span aria-hidden>{isRTL ? "←" : "→"}</span>
         </button>
       </div>
     </form>

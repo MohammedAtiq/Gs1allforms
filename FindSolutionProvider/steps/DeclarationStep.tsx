@@ -3,6 +3,7 @@
 import { CheckSquare, ShieldCheck } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useLanguage } from "../providers/LanguageProvider";
 
 export interface DeclarationValues {
   authorizedSignatory: string;
@@ -31,6 +32,7 @@ export function DeclarationStep({
   onSubmit,
 }: DeclarationStepProps) {
   const { t } = useTranslation();
+  const { isRTL } = useLanguage();
   const [authorizedSignatory, setAuthorizedSignatory] = useState(
     defaultValues?.authorizedSignatory ?? "",
   );
@@ -186,13 +188,13 @@ export function DeclarationStep({
 
       <div className="mt-auto flex flex-wrap items-center justify-between gap-2 border-t border-slate-100 pt-5">
         <ProgressDots active={5} total={6} />
-        <div className="ml-auto flex items-center gap-2">
+        <div className={`${isRTL ? "mr-auto" : "ml-auto"} flex items-center gap-2`}>
           <button
             type="button"
             onClick={onBack}
             className="inline-flex h-10 min-w-[78px] items-center justify-center gap-2 rounded-md border border-slate-200 bg-white px-3 text-xs font-semibold text-slate-700 transition hover:border-slate-300 sm:min-w-[94px] sm:px-4 sm:text-sm"
           >
-            {`← ${t("common.back")}`}
+            {`${isRTL ? "→" : "←"} ${t("common.back")}`}
           </button>
           <button
             type="button"
@@ -200,7 +202,7 @@ export function DeclarationStep({
             className="inline-flex h-10 min-w-[96px] items-center justify-center gap-2 rounded-md bg-gs1-blue px-3 text-xs font-semibold text-white shadow-sm transition hover:bg-gs1-blue-dark sm:min-w-[110px] sm:px-5 sm:text-sm"
           >
             {t("common.continue")}
-            <span aria-hidden>→</span>
+            <span aria-hidden>{isRTL ? "←" : "→"}</span>
           </button>
         </div>
       </div>

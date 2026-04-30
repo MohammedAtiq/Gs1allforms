@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { useLanguage } from "../providers/LanguageProvider";
 import type { CompanyInfoValues } from "../schemas/companyInfo";
 import type { DeclarationValues } from "./DeclarationStep";
 import type { DocumentsValues } from "./DocumentsStep";
@@ -54,6 +55,7 @@ export function ReviewStep({
   onSubmitApplication,
 }: ReviewStepProps) {
   const { t } = useTranslation();
+  const { isRTL } = useLanguage();
   const categoryLabels = useMemo(
     () => (category?.length ? category.map((id) => CATEGORY_LABELS[id] ?? id) : []),
     [category],
@@ -157,13 +159,13 @@ export function ReviewStep({
 
       <div className="mt-auto flex flex-wrap items-center justify-between gap-2 border-t border-slate-100 pt-5">
         <ProgressDots active={6} total={6} />
-        <div className="ml-auto flex items-center gap-2">
+        <div className={`${isRTL ? "mr-auto" : "ml-auto"} flex items-center gap-2`}>
           <button
             type="button"
             onClick={onBack}
             className="inline-flex h-10 min-w-[78px] items-center justify-center gap-2 rounded-md border border-slate-200 bg-white px-3 text-xs font-semibold text-slate-700 transition hover:border-slate-300 sm:min-w-[94px] sm:px-4 sm:text-sm"
           >
-            {`← ${t("common.back")}`}
+            {`${isRTL ? "→" : "←"} ${t("common.back")}`}
           </button>
           <button
             type="button"

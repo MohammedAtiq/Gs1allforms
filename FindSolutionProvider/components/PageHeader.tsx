@@ -61,26 +61,32 @@ export function PageHeader() {
                 >
                   <Languages size={14} />
                   <span className="hidden sm:inline">
-                    {language === "ar" ? "السعودية" : "English"}
+                    {language === "ar" ? "Saudi Arabia" : "English"}
                   </span>
                   <ChevronDown size={12} />
                 </button>
 
                 {isLangOpen ? (
-                  <div className="absolute right-0 top-9 z-50 w-40 overflow-hidden rounded-md border border-slate-200 bg-white shadow-md">
+                  <div
+                    className={`absolute top-9 z-50 w-40 max-w-[calc(100vw-1rem)] overflow-hidden rounded-md border border-slate-200 bg-white shadow-md ${
+                      isRTL ? "left-0" : "right-0"
+                    }`}
+                  >
                     <button
                       type="button"
                       onClick={() => {
                         setLanguage("ar");
                         setIsLangOpen(false);
                       }}
-                      className={`block w-full cursor-pointer px-3 py-2 text-left text-xs transition hover:bg-slate-50 ${
+                      className={`block w-full cursor-pointer px-3 py-2 text-xs transition hover:bg-slate-50 ${
+                        isRTL ? "text-right" : "text-left"
+                      } ${
                         language === "ar"
                           ? "bg-slate-50 font-semibold text-gs1-blue"
                           : "text-slate-600"
                       }`}
                     >
-                      السعودية
+                      Saudi Arabia
                     </button>
                     <button
                       type="button"
@@ -88,7 +94,9 @@ export function PageHeader() {
                         setLanguage("en");
                         setIsLangOpen(false);
                       }}
-                      className={`block w-full cursor-pointer px-3 py-2 text-left text-xs transition hover:bg-slate-50 ${
+                      className={`block w-full cursor-pointer px-3 py-2 text-xs transition hover:bg-slate-50 ${
+                        isRTL ? "text-right" : "text-left"
+                      } ${
                         language === "en"
                           ? "bg-slate-50 font-semibold text-gs1-blue"
                           : "text-slate-600"
