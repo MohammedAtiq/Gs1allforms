@@ -39,7 +39,7 @@ const resources = {
         helpText: "Contact our support team for assistance.",
       },
       steps: {
-        categoriesTitle: "Categories",
+        categoriesTitle: "Barcode Services",
         categoriesSubtitle: "Select provider categories",
         companyTitle: "Company",
         companySubtitle: "Company details",
@@ -216,7 +216,7 @@ const resources = {
         helpText: "تواصل مع فريق الدعم للمساعدة.",
       },
       steps: {
-        categoriesTitle: "الفئات",
+        categoriesTitle: "خدمات الباركود",
         categoriesSubtitle: "اختر فئات مزود الحلول",
         companyTitle: "الشركة",
         companySubtitle: "بيانات الشركة",

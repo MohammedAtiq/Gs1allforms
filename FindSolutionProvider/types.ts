@@ -17,7 +17,7 @@ export const STEPS: StepDefinition[] = [
   {
     id: "categories",
     index: 1,
-    title: "Categories",
+    title: "Barcode Services",
     subtitle: "Select provider categories",
   },
   {
